@@ -9,50 +9,24 @@ import java.util.regex.*;
 
 class Result {
     public static int uniqueWolfs(List<Integer> arr) {
-        int tur1=0;
-        int tur2=0;
-        int tur3=0;
-        int tur4=0;
-        int tur5=0;
-        int grater=0;
-        String kind="";
 
-        for (int item:
-             arr) {
-            if(item == 1)
-                tur1++;
-            if(item == 2)
-                tur2++;
-            if(item == 3)
-                tur3++;
-            if(item == 4)
-                tur4++;
-            if(item == 5)
-                tur5++;
+        int[] repeatedKind= {0,0,0,0,0};
+        int temp;
+        int kind = 0;
+
+        for (int i=0; i<arr.size(); i++) {
+            repeatedKind[arr.get(i)-1]++;
         }
 
-        if(tur1 > grater){
-            grater=tur1;
-            kind = "1";
-        }
-        if(tur2 > grater){
-            grater=tur2;
-            kind = "2";
-        }
-        if(tur3 > grater){
-            grater=tur3;
-            kind = "3";
-        }
-        if(tur4 > grater){
-            grater=tur4;
-            kind = "4";
-        }
-        if(tur5 > grater){
-            grater=tur5;
-            kind = "5";
+        temp = repeatedKind[0];
+        for (int i = 0; i < repeatedKind.length; i++){
+            if (repeatedKind[i] > temp) {
+                temp = repeatedKind[i];
+                kind = i+1;
+            }
         }
 
-        return Integer.parseInt(kind);
+        return kind;
     }
 }
 public class Solution {
